@@ -1,103 +1,174 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
+import RotatingText from "@/components/RotatingText";
+import ScrollProgress from "@/components/ScrollProgress";
+import DropdownSection from "@/components/DropdownSection";
+
+const projects = [
+  {
+    title: "eMployed",
+    description: "A platform for streamlining the student recruiting process.",
+    imageUrl: "/project1.jpg",
+    link: "/projects/employed"
+  },
+  {
+    title: "Fleet Analytics Dashboards",
+    description: "A dashboard for fleet managers to track their vehicles KPIs",
+    imageUrl: "/project2.jpg",
+    link: "/projects/fleet-analytics"
+  },
+  {
+    title: "UNSW DevSoc Redesign",
+    description: "A redesign of the UNSW DevSoc website",
+    imageUrl: "/project4.jpg",
+    link: "/projects/devsoc"
+  },
+  {
+    title: "MStudy",
+    description: "A platform for streamlining the peery studying process.",
+    imageUrl: "/project3.jpg",
+    link: "/projects/mstudy"
+  }
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const carouselRef = useRef<HTMLDivElement>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <div className="bg-[#111111] text-white min-h-screen">
+      <header className="fixed w-full top-0 z-50 bg-[#111111]/80 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <a href="#" className="text-lg tracking-wider px-3 py-1 rounded border border-white/20">
+             home
+            </a>
+          </motion.div>
+          <nav className="flex gap-6 tracking-wide text-sm lowercase">
+            <a href="https://kumarann.netlify.app/" className="hover:text-gray-300 transition-colors">Full Stack Portfolio</a>
+            <a href="https://www.linkedin.com/in/kkumarann/" className="hover:text-gray-300 transition-colors">Linkedin</a>
+            <a href="github.com/kumarannathan?tab=repositories" className="hover:text-gray-300 transition-colors">GitHub</a>
+            <a href="mailto:kumarann@umich.edu" className="hover:text-gray-300 transition-colors">Email</a>
+          </nav>
         </div>
+      </header>
+
+      <main>
+        {/* Hero Section */}
+        <section className="min-h-screen flex items-center px-4 pt-20">
+          <div className="max-w-7xl mx-auto w-full">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2 }}
+              className="space-y-6"
+            >
+              <h1 className="text-5xl sm:text-7xl tracking-tight font-light max-w-4xl leading-[1.5] flex flex-col">
+                <span>
+                  i&apos;m kumaran, a <RotatingText />
+                </span>
+                <span className="block mt-2">
+                  based in ann arbor, michigan.
+                </span>
+              </h1>
+              <p className="text-2xl sm:text-3xl text-gray-400 max-w-3xl tracking-wide">
+                check out my developer work <a href="https://kumarann.netlify.app/" className="underline hover:text-white transition-colors">here</a>.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+        {/* Projects Section */}
+        <div className="max-w-7xl mx-auto px-4">
+          <DropdownSection title="selected works">
+            <div className="max-w-[95vw]">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <ScrollProgress containerRef={carouselRef} />
+                <div 
+                  ref={carouselRef}
+                  className="flex space-x-8 overflow-x-auto pb-8 snap-x snap-mandatory mt-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                >
+                  {projects.map((project, index) => (
+                    <motion.div
+                      key={project.title}
+                      initial={{ opacity: 0, x: 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ 
+                        duration: 0.8,
+                        delay: index * 0.2,
+                        ease: [0.25, 0.1, 0.25, 1],
+                      }}
+                      className="flex-none w-[80vw] md:w-[45vw] lg:w-[30vw] snap-center"
+                    >
+                      <a href={project.link} className="block group">
+                        <div className="relative w-full h-[220px] overflow-hidden rounded-[10px] bg-transparent">
+                          <Image
+                            src={project.imageUrl}
+                            alt={project.title}
+                            fill
+                            className="object-contain transition-transform duration-700 group-hover:scale-105"
+                            sizes="(max-width: 768px) 80vw, (max-width: 1200px) 45vw, 30vw"
+                            priority={index === 0}
+                          />
+                          <div className="absolute inset-0 bg-black/10 transition-opacity duration-700 group-hover:opacity-0" />
+                        </div>
+                        <div className="mt-6 space-y-2">
+                          <h3 className="text-2xl tracking-wide lowercase">{project.title}</h3>
+                          <p className="text-gray-400 tracking-wide lowercase text-sm">{project.description}</p>
+                        </div>
+                      </a>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </DropdownSection>
+          
+          {/* About Me Section */}
+          <DropdownSection title="about me">
+            <div className="max-w-3xl">
+              <p className="text-xl text-gray-400 tracking-wide leading-relaxed">
+                i&apos;m a software engineer and designer based in ann arbor. i focus on creating intuitive and efficient solutions that solve real-world problems. currently studying at the university of michigan.
+              </p>
+            </div>
+          </DropdownSection>
+
+          {/* Academics Section */}   
+          <DropdownSection title="academics">
+            <div className="max-w-3xl">
+              <p className="text-xl text-gray-400 tracking-wide leading-relaxed">
+                studying computer science at the university of michigan, class of 2025. focusing on software engineering, human-computer interaction, and web development.
+              </p>
+            </div>
+          </DropdownSection>
+        </div>
+
+        {/* Previous Work Section */}
+        <section className="py-20 px-4 border-t border-white/10">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6"
+            >
+              <p className="text-2xl sm:text-3xl text-gray-400 max-w-3xl tracking-wide">
+                Check out my full stack development work on my{" "}
+                <a href="https://kumarann.netlify.app/" className="underline hover:text-white transition-colors">portfolio site</a>.
+              </p>
+            </motion.div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
