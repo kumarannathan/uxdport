@@ -2,12 +2,19 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import DropdownSection from "@/components/DropdownSection";
-import Image from "next/image";
+// import DropdownSection from "@/components/DropdownSection";
+// import Image from "next/image";
+import Footer from "@/components/Footer";
+import ImageModal from "@/components/ImageModal";
+import ScrollLine from "@/components/ScrollLine";
+import { useState } from "react";
 
 export default function DevSocProject() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <div className="bg-[#111111] text-white min-h-screen">
+      <ScrollLine />
       <header className="fixed w-full top-0 z-50 bg-[#111111]/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <Link href="/" className="text-lg tracking-wider px-3 py-1 rounded border border-white/20">
@@ -17,7 +24,7 @@ export default function DevSocProject() {
       </header>
 
       <main className="pt-24 pb-16 px-4">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -95,11 +102,14 @@ export default function DevSocProject() {
                   </div>
                 </div>
               </section>
-
+{/* 
               <DropdownSection title="wireframes & mockups">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-4">
-                    <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-900/40">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity max-w-xl"
+                      onClick={() => setSelectedImage("/devsoc-wireframe-1.jpg")}
+                    >
                       <Image
                         src="/devsoc-wireframe-1.jpg"
                         alt="DevSoc Wireframe 1"
@@ -110,7 +120,10 @@ export default function DevSocProject() {
                     <p className="text-sm text-gray-400">Initial website structure wireframes</p>
                   </div>
                   <div className="space-y-4">
-                    <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-900/40">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity max-w-xl"
+                      onClick={() => setSelectedImage("/devsoc-wireframe-2.jpg")}
+                    >
                       <Image
                         src="/devsoc-wireframe-2.jpg"
                         alt="DevSoc Wireframe 2"
@@ -121,11 +134,20 @@ export default function DevSocProject() {
                     <p className="text-sm text-gray-400">Final design system and component library</p>
                   </div>
                 </div>
-              </DropdownSection>
+              </DropdownSection> */}
             </div>
           </motion.div>
         </div>
       </main>
+
+      <Footer />
+
+      <ImageModal
+        isOpen={!!selectedImage}
+        onClose={() => setSelectedImage(null)}
+        imageSrc={selectedImage || ""}
+        alt="Wireframe"
+      />
     </div>
   );
 } 

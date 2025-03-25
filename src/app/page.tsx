@@ -6,6 +6,7 @@ import { useRef } from "react";
 import RotatingText from "@/components/RotatingText";
 import ScrollProgress from "@/components/ScrollProgress";
 import DropdownSection from "@/components/DropdownSection";
+import Footer from "@/components/Footer";
 
 const projects = [
   {
@@ -15,22 +16,22 @@ const projects = [
     link: "/projects/employed"
   },
   {
-    title: "Fleet Analytics Dashboards",
+    title: "EinNel Fleet Dashboards Redesign",
     description: "A dashboard for fleet managers to track their vehicles KPIs",
     imageUrl: "/project2.jpg",
     link: "/projects/fleet-analytics"
-  },
-  {
-    title: "UNSW DevSoc Redesign",
-    description: "A redesign of the UNSW DevSoc website",
-    imageUrl: "/project4.jpg",
-    link: "/projects/devsoc"
   },
   {
     title: "MStudy",
     description: "A platform for streamlining the peery studying process.",
     imageUrl: "/project3.jpg",
     link: "/projects/mstudy"
+  },
+  {
+    title: "UNSW DevSoc Redesign",
+    description: "A redesign of the UNSW DevSoc website",
+    imageUrl: "/project4.jpg",
+    link: "/projects/devsoc"
   }
 ];
 
@@ -78,7 +79,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="text-2xl sm:text-3xl text-gray-400 max-w-3xl tracking-wide">
-                check out my developer work <a href="https://kumarann.netlify.app/" className="underline hover:text-white transition-colors">here</a>.
+                check out my developer work <a href="https://kumarann.netlify.app/" className="underline hover:text-white transition-colors">here</a>. scroll down to see my ux works.
               </p>
             </motion.div>
           </div>
@@ -144,10 +145,43 @@ export default function Home() {
 
           {/* Academics Section */}   
           <DropdownSection title="academics">
-            <div className="max-w-3xl">
-              <p className="text-xl text-gray-400 tracking-wide leading-relaxed">
-                studying computer science at the university of michigan, class of 2025. focusing on software engineering, human-computer interaction, and web development.
-              </p>
+            <div className="max-w-3xl space-y-8">
+              <div>
+                <p className="text-xl text-gray-400 tracking-wide leading-relaxed">
+                  studying computer science at the university of michigan, class of 2025. focusing on software engineering, human-computer interaction, and web development.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg text-white mb-3 tracking-wide">relevant coursework</h3>
+                <p className="text-gray-400 tracking-wide leading-relaxed">
+                  discrete mathematics, theory of computation, data structures & algorithms, computer architecture, artificial intelligence, web development, database systems, computer networks and applications, xr/virtual reality, user interface development
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-lg text-white mb-3 tracking-wide">technical skills</h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="text-gray-300 mb-2 tracking-wide">programming languages</h4>
+                    <p className="text-gray-400 tracking-wide">
+                      c/c#/c++, java, javascript, python, sql, swift, assembly
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-gray-300 mb-2 tracking-wide">technologies & frameworks</h4>
+                    <p className="text-gray-400 tracking-wide">
+                      reactjs, postgresql, git, html/css, aws
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-gray-300 mb-2 tracking-wide">development practices</h4>
+                    <p className="text-gray-400 tracking-wide">
+                      ios/mobile app development, frontend development, agile methodologies, api integration, testing & qa
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </DropdownSection>
         </div>
@@ -169,6 +203,8 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      <Footer />
     </div>
   );
 }

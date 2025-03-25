@@ -4,173 +4,181 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import DropdownSection from "@/components/DropdownSection";
 import Image from "next/image";
+import Footer from "@/components/Footer";
+import ImageModal from "@/components/ImageModal";
+import ScrollLine from "@/components/ScrollLine";
+import { useState } from "react";
 
 export default function MStudyProject() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <div className="bg-[#111111] text-white min-h-screen">
+      <ScrollLine />
       <header className="fixed w-full top-0 z-50 bg-[#111111]/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/" className="text-lg font-space-mono tracking-wide px-3 py-1 rounded border border-white/20">
-            kumaran
+          <Link href="/" className="text-lg tracking-wider px-3 py-1 rounded border border-white/20">
+            back
           </Link>
         </div>
       </header>
 
       <main className="pt-24 pb-16 px-4">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {/* Hero Section */}
-            <motion.section 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="relative h-[60vh] w-full overflow-hidden"
-            >
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-              >
-                <source src="/employed.mp4" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-black/50 flex items-center">
-                <div className="max-w-7xl mx-auto px-4 w-full">
-                  <h1 className="text-5xl sm:text-7xl tracking-tight font-light mb-4 font-space-grotesk">employed</h1>
-                  <p className="text-xl text-gray-300 tracking-wide font-space-mono">
-                    streamlining the student recruitment process
-                  </p>
-                </div>
+            <h1 className="text-5xl sm:text-6xl font-light tracking-tight mb-8">MStudy</h1>
+            <p className="text-xl text-gray-400 tracking-wide mb-12">
+             **in progress** A platform for streamlining the peer studying process.
+            </p>
+
+            <div className="aspect-video w-full mb-16 rounded-lg overflow-hidden p-8">
+              <div className="relative w-full h-full">
+                <video
+                  className="w-full h-full object-contain"
+                  playsInline
+                  autoPlay
+                  muted
+                  loop
+                  poster="/project3.jpg"
+                >
+                  <source src="/mstudy.mp4" type="video/mp4" />
+                </video>
               </div>
-            </motion.section>
+            </div>
 
-            {/* Content Sections */}
             <div className="space-y-16">
-              {/* Background Section */}
-              <motion.section 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="py-20 border-b border-white/10"
-              >
-                <h2 className="text-3xl tracking-wide mb-8 font-space-mono">background</h2>
-                <div className="prose prose-invert max-w-3xl space-y-6 tracking-wide font-space-grotesk">
-                  <p>
-                    employed is a comprehensive recruitment platform designed to help students at the University of Michigan navigate their career journey. the app streamlines the process of job searching, application preparation, and professional networking.
-                  </p>
-                  <p>
-                    our team identified that students often struggled with the complexities of job recruitment, from resume creation to interview preparation. the process was fragmented across multiple platforms and resources.
-                  </p>
-                  <p>
-                    through an iterative design process, we developed a unified solution that guides students through each step of their recruitment journey, providing tools, resources, and community support along the way.
+              <section>
+                <h2 className="text-2xl tracking-wide mb-6 lowercase">storyboarding process</h2>
+                <div className="prose prose-invert mb-8">
+                  <p className="text-gray-400 tracking-wide leading-relaxed">
+                    To generate diverse solutions, we employed the IDEO Ideation method, which encouraged us to brainstorm freely and without constraints. The primary goal was to produce as many ideas as possible, without limiting creativity. Techniques such as sketching, brainwriting, and mind mapping helped us explore a variety of potential solutions.
                   </p>
                 </div>
-
-                <p className="text-xl text-gray-400 tracking-wide mb-12">
-                  A platform for streamlining the peer studying process.
-                </p>
-
-                <div className="aspect-video w-full mb-16 bg-gray-900/40 rounded-lg overflow-hidden p-8">
-                  <div className="relative w-full h-full">
-                    <video
-                      className="w-full h-full object-contain"
-                      playsInline
-                      autoPlay
-                      muted
-                      loop
-                      poster="/project3.jpg"
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
+                  <div className="space-y-4">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => setSelectedImage("/storyboard1.jpg")}
                     >
-                      <source src="/mstudy.mp4" type="video/mp4" />
-                    </video>
-                  </div>
-                </div>
-              </motion.section>
-
-              {/* Approach Section */}
-              <motion.section 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="py-20 border-b border-white/10"
-              >
-                <h2 className="text-3xl tracking-wide mb-8 font-space-mono">approach</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                  <div className="space-y-8">
-                    <div>
-                      <h3 className="text-xl tracking-wide mb-4 text-gray-300 font-space-mono">ideation & research</h3>
-                      <p className="text-gray-400 tracking-wide font-space-grotesk">
-                        we began by identifying core student frustrations through user interviews and surveys. using the IDEO ideation method, we brainstormed over 80 potential solutions and refined them based on feasibility, impact, and alignment with user needs.
-                      </p>
+                      <Image
+                        src="/storyboard1.jpg"
+                        alt="MStudy Storyboard 1"
+                        fill
+                        className="object-cover"
+                      />
                     </div>
-                    <div>
-                      <h3 className="text-xl tracking-wide mb-4 text-gray-300 font-space-mono">storyboarding & validation</h3>
-                      <p className="text-gray-400 tracking-wide font-space-grotesk">
-                        to visualize user interactions, we created 8 storyboards, each demonstrating a unique feature. these were tested through speed dating sessions with four students, allowing us to refine our design based on real user feedback.
-                      </p>
-                    </div>
+                    <p className="text-sm text-gray-400">Initial storyboard sketches</p>
                   </div>
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <video 
-                      autoPlay 
-                      loop 
-                      muted 
-                      playsInline
-                      className="absolute inset-0 w-full h-full object-fit rounded-[15px]"
+                  <div className="space-y-4">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => setSelectedImage("/storyboard2.jpg")}
                     >
-                      <source src="/employed.mp4" type="video/mp4" />
-                    </video>
+                      <Image
+                        src="/storyboard2.jpg"
+                        alt="MStudy Storyboard 2"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-gray-400">Refined storyboard concepts</p>
                   </div>
                 </div>
-              </motion.section>
+              </section>
 
-              {/* Features Section */}
-              <motion.section 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="py-20"
-              >
-                <h2 className="text-3xl tracking-wide mb-12 font-space-mono">core features</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <section>
+                <h2 className="text-2xl tracking-wide mb-6 lowercase">ideation process</h2>
+                <div className="prose prose-invert mb-8">
+                  <p className="text-gray-400 tracking-wide leading-relaxed">
+                    Our team generated a total of 80 ideas during this phase. Afterward, we filtered and grouped these ideas, considering feasibility, impact, and alignment with user needs. This process resulted in a refined set of solutions that were selected for further exploration and development.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
                   <div className="space-y-4">
-                    <h3 className="text-xl tracking-wide text-gray-300 font-space-mono">resume building</h3>
-                    <p className="text-gray-400 tracking-wide font-space-grotesk">
-                      interactive resume builder with industry-specific templates and ai-powered suggestions for optimal content structuring.
-                    </p>
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => setSelectedImage("/IDEO.jpg")}
+                    >
+                      <Image
+                        src="/IDEO.jpg"
+                        alt="MStudy Ideation Process 1"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-gray-400">Initial brainstorming session</p>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-xl tracking-wide text-gray-300 font-space-mono">networking</h3>
-                    <p className="text-gray-400 tracking-wide font-space-grotesk">
-                      connect with alumni, industry professionals, and fellow students. schedule coffee chats and informational interviews seamlessly.
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => setSelectedImage("/breakpoints.jpg")}
+                    >
+                      <Image
+                        src="/breakpoints.jpg"
+                        alt="MStudy Ideation Process 2"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-gray-400">Idea filtering and grouping</p>
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <h2 className="text-2xl tracking-wide mb-6 lowercase">design validation</h2>
+                <div className="prose prose-invert mb-8">
+                  <p className="text-gray-400 tracking-wide leading-relaxed">
+                    We created 8 storyboards to visually represent different solutions to user needs. Storyboarding allowed us to map out the user journey and demonstrate how each solution would address particular pain points. For example, one storyboard highlighted a user searching for study locations based on activity type, which was identified as a key user need.
+                  </p>
+                  <p className="text-gray-400 tracking-wide leading-relaxed mt-4">
+                    To validate our solutions, we conducted speed dating sessions with four potential users. Each participant provided valuable feedback on our proposed solutions, helping us identify which features resonated most strongly with users and which needed refinement.
+                  </p>
+                </div>
+            
+              </section>
+
+              <section>
+                <h2 className="text-2xl tracking-wide mb-6 lowercase">final direction</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl mb-2 lowercase">activity-based sorting</h3>
+                    <p className="text-gray-400 tracking-wide">
+                      Find study locations based on specific activity or study type preferences.
                     </p>
                   </div>
-                  <div className="space-y-4">
-                    <h3 className="text-xl tracking-wide text-gray-300 font-space-mono">interview prep</h3>
-                    <p className="text-gray-400 tracking-wide font-space-grotesk">
-                      practice with industry-specific interview questions, receive real-time feedback, and schedule mock interviews with peers.
+                  <div>
+                    <h3 className="text-xl mb-2 lowercase">verification system</h3>
+                    <p className="text-gray-400 tracking-wide">
+                      User verification to ensure a trusted community of students.
                     </p>
                   </div>
-                  <div className="space-y-4">
-                    <h3 className="text-xl tracking-wide text-gray-300 font-space-mono">recruitment modules</h3>
-                    <p className="text-gray-400 tracking-wide font-space-grotesk">
-                      structured guides and timelines for each recruitment phase, from application tracking to offer negotiation support.
+                  <div>
+                    <h3 className="text-xl mb-2 lowercase">gamification elements</h3>
+                    <p className="text-gray-400 tracking-wide">
+                      Points system rewarding achievements like exploring spaces and attending sessions.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-xl mb-2 lowercase">community features</h3>
+                    <p className="text-gray-400 tracking-wide">
+                      Connect with peers and join study groups based on shared interests.
                     </p>
                   </div>
                 </div>
-                <p className="mt-12 text-gray-400 tracking-wide font-space-grotesk max-w-3xl">
-                  our comprehensive suite of tools is designed to empower students throughout their entire recruitment journey, from initial preparation to final offer negotiations.
-                </p>
-              </motion.section>
+              </section>
 
               <DropdownSection title="wireframes & mockups">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-4">
-                    <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-900/40">
+                  {/* <div className="space-y-4">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity max-w-xl"
+                      onClick={() => setSelectedImage("/mstudy-wireframe-1.jpg")}
+                    >
                       <Image
                         src="/mstudy-wireframe-1.jpg"
                         alt="MStudy Wireframe 1"
@@ -179,17 +187,20 @@ export default function MStudyProject() {
                       />
                     </div>
                     <p className="text-sm text-gray-400">Initial user flow and wireframes</p>
-                  </div>
+                  </div> */}
                   <div className="space-y-4">
-                    <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-900/40">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity max-w-xl"
+                      onClick={() => setSelectedImage("/mstudyfinal.jpg")}
+                    >
                       <Image
-                        src="/mstudy-wireframe-2.jpg"
+                        src="/mstudyfinal.jpg"
                         alt="MStudy Wireframe 2"
                         fill
                         className="object-cover"
                       />
                     </div>
-                    <p className="text-sm text-gray-400">Final UI design for study session interface</p>
+                    <p className="text-sm text-gray-400">Midcycle UI design for study session interface</p>
                   </div>
                 </div>
               </DropdownSection>
@@ -197,6 +208,15 @@ export default function MStudyProject() {
           </motion.div>
         </div>
       </main>
+
+      <Footer />
+
+      <ImageModal
+        isOpen={!!selectedImage}
+        onClose={() => setSelectedImage(null)}
+        imageSrc={selectedImage || ""}
+        alt="Wireframe"
+      />
     </div>
   );
 } 

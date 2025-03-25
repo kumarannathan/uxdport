@@ -4,10 +4,17 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import DropdownSection from "@/components/DropdownSection";
 import Image from "next/image";
+import Footer from "@/components/Footer";
+import ImageModal from "@/components/ImageModal";
+import ScrollLine from "@/components/ScrollLine";
+import { useState } from "react";
 
 export default function EmployedProject() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <div className="bg-[#111111] text-white min-h-screen">
+      <ScrollLine />
       <header className="fixed w-full top-0 z-50 bg-[#111111]/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <Link href="/" className="text-lg tracking-wider px-3 py-1 rounded border border-white/20">
@@ -17,7 +24,7 @@ export default function EmployedProject() {
       </header>
 
       <main className="pt-24 pb-16 px-4">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -99,9 +106,12 @@ export default function EmployedProject() {
               <DropdownSection title="wireframes & mockups">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-4">
-                    <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-900/40">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity max-w-xl"
+                      onClick={() => setSelectedImage("/wireframe1.jpg")}
+                    >
                       <Image
-                        src="/employed-wireframe-1.jpg"
+                        src="/wireframe1.jpg"
                         alt="eMployed Wireframe 1"
                         fill
                         className="object-cover"
@@ -110,15 +120,18 @@ export default function EmployedProject() {
                     <p className="text-sm text-gray-400">Initial wireframe exploration for the dashboard</p>
                   </div>
                   <div className="space-y-4">
-                    <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-900/40">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity max-w-xl"
+                      onClick={() => setSelectedImage("/employed2.jpg")}
+                    >
                       <Image
-                        src="/employed-wireframe-2.jpg"
+                        src="/employed2.jpg"
                         alt="eMployed Wireframe 2"
                         fill
                         className="object-cover"
                       />
                     </div>
-                    <p className="text-sm text-gray-400">High-fidelity mockup of the main interface</p>
+                    <p className="text-sm text-gray-400">Final UI design and user flow diagram</p>
                   </div>
                 </div>
               </DropdownSection>
@@ -126,6 +139,15 @@ export default function EmployedProject() {
           </motion.div>
         </div>
       </main>
+
+      <Footer />
+
+      <ImageModal
+        isOpen={!!selectedImage}
+        onClose={() => setSelectedImage(null)}
+        imageSrc={selectedImage || ""}
+        alt="Wireframe"
+      />
     </div>
   );
 } 

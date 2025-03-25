@@ -4,10 +4,17 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import DropdownSection from "@/components/DropdownSection";
 import Image from "next/image";
+import Footer from "@/components/Footer";
+import ImageModal from "@/components/ImageModal";
+import ScrollLine from "@/components/ScrollLine";
+import { useState } from "react";
 
 export default function FleetAnalyticsProject() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <div className="bg-[#111111] text-white min-h-screen">
+      <ScrollLine />
       <header className="fixed w-full top-0 z-50 bg-[#111111]/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <Link href="/" className="text-lg tracking-wider px-3 py-1 rounded border border-white/20">
@@ -17,13 +24,13 @@ export default function FleetAnalyticsProject() {
       </header>
 
       <main className="pt-24 pb-16 px-4">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-5xl sm:text-6xl font-light tracking-tight mb-8">Fleet Analytics Dashboard 
+            <h1 className="text-5xl sm:text-6xl font-light tracking-tight mb-8">EinNel Technologies Dashboard Redesign
                {/* <span className="block mt-2 text-1xl tracking-wide mb-7 lowercase  text-gray-700"> EinNel Technologies */}
           </h1>
             <p className="text-xl text-gray-300 tracking-wide mb-12">
@@ -101,26 +108,46 @@ export default function FleetAnalyticsProject() {
               <DropdownSection title="wireframes & mockups">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-4">
-                    <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-900/40">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity max-w-xl"
+                      onClick={() => setSelectedImage("/dashframe.jpg")}
+                    >
                       <Image
-                        src="/fleet-wireframe-1.jpg"
+                        src="/dashframe.jpg"
                         alt="Fleet Analytics Wireframe 1"
                         fill
                         className="object-cover"
                       />
                     </div>
-                    <p className="text-sm text-gray-400">Early dashboard layout wireframes</p>
+                    <p className="text-sm text-gray-400">Original dashboard designs</p>
                   </div>
                   <div className="space-y-4">
-                    <div className="aspect-[4/3] relative rounded-lg overflow-hidden bg-gray-900/40">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity max-w-xl"
+                      onClick={() => setSelectedImage("/dashframe1.jpg")}
+                    >
                       <Image
-                        src="/fleet-wireframe-2.jpg"
+                        src="/dashframe1.jpg"
                         alt="Fleet Analytics Wireframe 2"
                         fill
                         className="object-cover"
                       />
                     </div>
-                    <p className="text-sm text-gray-400">Final UI design for analytics view</p>
+                    <p className="text-sm text-gray-400">Iteration 1</p>
+                  </div>
+                  <div className="space-y-4">
+                    <div 
+                      className="aspect-[16/9] relative rounded-lg overflow-hidden bg-gray-900/40 cursor-pointer hover:opacity-90 transition-opacity max-w-xl"
+                      onClick={() => setSelectedImage("/final.jpg")}
+                    >
+                      <Image
+                        src="/final.jpg"
+                        alt="Fleet Analytics Wireframe 2"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-gray-400">Final dashboard design</p>
                   </div>
                 </div>
               </DropdownSection>
@@ -128,6 +155,15 @@ export default function FleetAnalyticsProject() {
           </motion.div>
         </div>
       </main>
+
+      <Footer />
+
+      <ImageModal
+        isOpen={!!selectedImage}
+        onClose={() => setSelectedImage(null)}
+        imageSrc={selectedImage || ""}
+        alt="Wireframe"
+      />
     </div>
   );
 } 
